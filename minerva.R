@@ -16,8 +16,11 @@
 # L - number between 0 and 1. Lossy encoding parameter.
 #     1 means that all features will be perfectly encoded.
 #     0 means that nothing will be encoded.
-minerva.encode.items <- function(items, store=NA, L=0.5){
-  
+minerva.encode.items <- function(items, L=0.5){
+  features.to.keep <- matrix(data=sample(0:1, length(items), replace=T,
+                                         prob=c(1-L, L)), nrow=nrow(items))
+  lossy.encoding <- items * features.to.keep
+  return(lossy.encoding)
 }
 
 # This is a somewhat optimized cosine similarity function.
@@ -51,6 +54,9 @@ cosine.similarity <- function(x,y){
 #       that less similar items contribute less to
 #       the intensity of activation.
 minerva.intensity <- function(item, store, tau=3){
- 
+  similarity <- cosine.similarity.vector.to.matrix(item, store)
+  activation <- similarity^tau
+  intensity <- sum(activation)
+  return(intensity)
 }
 
