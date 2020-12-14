@@ -15,9 +15,9 @@ image.exemplars <- image.data$num_exemplars
 rm(image.data) # memory management
 
 # PARAMETERS
-tau <- 3 # Higher values will mean that activations are stronger for highly similar items in memory.
-         # Lower values spread out the activation more, so loosely similar items are somewhat activated.
-lossy.encoding <- .7 # proportion of features to KEEP when encoding.
+tau <- 5 # Higher values will mean that activations are stronger for highly similar items in memory.
+# Lower values spread out the activation more, so loosely similar items are somewhat activated.
+lossy.encoding <- .8 # proportion of features to KEEP when encoding.
 features.to.use <- image.cnn.features
 
 ####
@@ -191,6 +191,7 @@ ggplot(combined.results, aes(x=studied.exemplars, y=M, fill=source))+
   scale_fill_brewer(type="qual", palette = "Set1")+
   labs(x="Studied Items", y="Proportion Recalled", fill=NULL)+
   theme_bw()
+
 
 
 
