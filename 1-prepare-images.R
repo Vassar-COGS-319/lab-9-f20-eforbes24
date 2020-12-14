@@ -1,4 +1,4 @@
-Sys.setenv('CUDA_VISIBLE_DEVICES' = "0")
+Sys.setenv('CUDA_VISIBLE_DEVICES' = "6")
 
 # STAGE 1: Prepare the images
 
